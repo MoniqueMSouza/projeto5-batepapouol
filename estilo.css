@@ -82,3 +82,12 @@ color: #000000;
     margin-top: 80px;
     
 }
+
+li{
+    height: 40px;
+    width: 375px;
+    background-color: red;
+    margin-bottom: 4px;
+    text-align: center; /*aqui ta errado!*/
+}
+
