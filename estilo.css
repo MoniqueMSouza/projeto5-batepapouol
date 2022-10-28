@@ -76,10 +76,11 @@ color: #000000;
 /*_____________________________________CONVERSAS_____________________________________*/
 
 .conversas{
-    height: 667px;
+    height: 507px;
     width: 375px;
     background-color:#E5E5E5;
     margin-top: 80px;
+   
     
 }
 
@@ -88,6 +89,6 @@ li{
     width: 375px;
     background-color: red;
     margin-bottom: 4px;
-    text-align: center; /*aqui ta errado!*/
+    
 }
 

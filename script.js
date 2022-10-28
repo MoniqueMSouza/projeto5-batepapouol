@@ -1,12 +1,11 @@
 
 let dados = {name:''};
 
-
 function AdicionarNomeUsuario(){
 
     const nomeUsuario = prompt('Qual o seu nome?');
 
-    let dados = {
+    dados = {
     name:`${nomeUsuario}`
     };
 
@@ -14,6 +13,8 @@ function AdicionarNomeUsuario(){
 
     requisiçao.then(DeuCerto);
     requisiçao.catch(DeuErrado);
+
+    return dados;
 }
 
 function DeuErrado (resposta){
@@ -26,10 +27,43 @@ function DeuErrado (resposta){
 function DeuCerto (resposta){
     console.log(resposta);
     alert('Você entrou!');
+    setInterval(usuarioPresente, 5000);
+}
+
+function usuarioPresente(){
+    
+
+     const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', dados);
+
+     request.then(Certo);
+     request.catch(Errado);
+    }
+
+
+function Errado (resposta){
+    console.log(resposta.response);
+    alert('bug');
+   
+}
+
+function Certo (resposta){
+    console.log(resposta);
+
 }
 
 AdicionarNomeUsuario();
 BuscarMensagens();
+
+
+
+
+
+
+
+
+
+
+
 
 function BuscarMensagens(){
 
