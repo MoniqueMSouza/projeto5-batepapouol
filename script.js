@@ -1,11 +1,13 @@
 
-let dados = {name:''};
+let nomeUsuario = '';
+
+
 
 function AdicionarNomeUsuario(){
 
-    const nomeUsuario = prompt('Qual o seu nome?');
+ nomeUsuario = prompt('Qual o seu nome?');
 
-    dados = {
+    let dados = {
     name:`${nomeUsuario}`
     };
 
@@ -14,7 +16,9 @@ function AdicionarNomeUsuario(){
     requisiçao.then(DeuCerto);
     requisiçao.catch(DeuErrado);
 
-    return dados;
+    return nomeUsuario;
+    
+
 }
 
 function DeuErrado (resposta){
@@ -31,7 +35,10 @@ function DeuCerto (resposta){
 }
 
 function usuarioPresente(){
-    
+
+    let dados = {
+        name:`${nomeUsuario}`
+        };
 
      const request = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', dados);
 
@@ -53,15 +60,6 @@ function Certo (resposta){
 
 AdicionarNomeUsuario();
 BuscarMensagens();
-
-
-
-
-
-
-
-
-
 
 
 
@@ -108,3 +106,34 @@ function renderizarMensagens(msg){
     
     
 
+
+function enviarMensagem (){
+    let mensagem = document.querySelector("input")
+    let dentromsg= mensagem.value
+    
+
+
+    const mensagemServidor = {
+        from: nomeUsuario,
+        to: "Todos",
+        text: dentromsg,
+        type: "message"
+    };
+
+    const requerimento = axios.post ('https://mock-api.driven.com.br/api/v6/uol/messages' , mensagemServidor);
+
+    requerimento.then(Enviou);
+    requerimento.catch(NaoEnviou);
+
+}
+function NaoEnviou (resposta){
+    console.log(resposta.response);
+    alert('Mensagem não enviada');
+   
+}
+
+function Enviou (resposta){
+    console.log(resposta);
+    alert('Mensagem Enviada');
+
+}
