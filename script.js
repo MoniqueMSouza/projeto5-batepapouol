@@ -22,14 +22,14 @@ function AdicionarNomeUsuario(){
 }
 
 function DeuErrado (resposta){
-    console.log(resposta.response);
+    // console.log(resposta.response);
     alert('Já existe um usuário com este nome! Escolha outro.');
 
     AdicionarNomeUsuario();
 }
 
 function DeuCerto (resposta){
-    console.log(resposta);
+    //console.log(resposta);
     alert('Você entrou!');
     setInterval(usuarioPresente, 5000);
 }
@@ -47,20 +47,19 @@ function usuarioPresente(){
     }
 
 
-function Errado (resposta){
-    console.log(resposta.response);
-    alert('bug');
+ function Errado (){
+     window.location.reload();
    
 }
 
 function Certo (resposta){
-    console.log(resposta);
+    //console.log(resposta);
 
 }
 
 AdicionarNomeUsuario();
 BuscarMensagens();
-
+recarregarMensagens();
 
 
 function BuscarMensagens(){
@@ -69,40 +68,69 @@ function BuscarMensagens(){
     promessa.then(resposta => {renderizarMensagens(resposta.data)});
 } 
 
-
-// function Buscou (resposta){
-//     console.log(resposta);
-//     alert('Buscou mensagens!');
-
-// dados = resposta.data;
-// renderizarMensagens();
-// console.log(dados);
-
-// }
+function recarregarMensagens(){
+    setInterval(BuscarMensagens, 1000);
+}
 
 function renderizarMensagens(msg){
-    console.log(msg.length);
+     //console.log(msg.length);
 
     const ListaMensagens = document.querySelector('.conversas');
     ListaMensagens.innerHTML = '';
-    console.log(msg);
+     //console.log(msg);
 
 
     for (let i = 0; i < msg.length; i++) {
     
-        // let mensagens = msg[i];
-    console.log(msg[i]);
+       //  let mensagens = msg[i];
+     //console.log(msg[i]);
     
+
+
+     if (msg[i].type === "status") {
         ListaMensagens.innerHTML += `
-            <li>                
+            <li class="status">                
             (${msg[i].time})     
-            ${msg[i].from} para 
-                ${msg[i].to}: 
+            ${msg[i].from}  
                 ${msg[i].text}
             </li>
         `;
-     }
+    
+    } else if (msg[i].type === "message") {
+        ListaMensagens.innerHTML += `
+        <li class="message">                
+        (${msg[i].time})     
+        ${msg[i].from} para   
+            ${msg[i].to} : 
+            ${msg[i].text}
+        </li>
+    `;
+
+
+    } else if (msg[i].type === "private_message"){
+        ListaMensagens.innerHTML += `
+        <li class"private_message">                
+        (${msg[i].time})     
+        ${msg[i].from} reservadamente para 
+            ${msg[i].to}: 
+            ${msg[i].text}
+        </li>
+    `;
+
     }
+
+
+
+
+
+
+
+
+}
+
+
+}
+  
     
     
 
@@ -126,14 +154,17 @@ function enviarMensagem (){
     requerimento.catch(NaoEnviou);
 
 }
+
+
 function NaoEnviou (resposta){
-    console.log(resposta.response);
-    alert('Mensagem não enviada');
+     //console.log(resposta.response);
+    window.location.reload();
+    
    
 }
 
 function Enviou (resposta){
-    console.log(resposta);
-    alert('Mensagem Enviada');
+     //console.log(resposta);
+    
 
 }

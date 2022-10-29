@@ -85,10 +85,30 @@ color: #000000;
 }
 
 li{
-    height: 40px;
-    width: 375px;
-    background-color: red;
+    width: 375px;    
     margin-bottom: 4px;
+    height:40px ;
+    
+}
+
+.status{
+
+    background-color:#DCDCDC
+ 
+
+}
+
+.message{
+
+    background-color: 
+    #FFFFFF;
+
+}
+
+.private_message{
+background-color: 
+#FFDEDE;
+
     
 }
 
