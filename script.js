@@ -30,7 +30,7 @@ function DeuErrado (resposta){
 
 function DeuCerto (resposta){
     //console.log(resposta);
-    alert('Você entrou!');
+
     setInterval(usuarioPresente, 5000);
 }
 
@@ -93,7 +93,7 @@ const mensagens2 = msg.data
      if (msg[i].type === "status") {
         ListaMensagens.innerHTML += `
         <li class="status">               
-        
+        <p>
         <span class="time">  
             (${msg[i].time}) 
        
@@ -106,14 +106,14 @@ const mensagens2 = msg.data
         <span class="texto"> 
             ${msg[i].text}
         </span>
-
+</p>
         </li>
         `;
     
     } else if (msg[i].type === "message") {
         ListaMensagens.innerHTML += `
         <li class="message">    
-        
+        <p>
         <span class="time"> 
         (${msg[i].time})  
         </span>
@@ -130,22 +130,29 @@ const mensagens2 = msg.data
         ${msg[i].text}
         </span>
 
-           
+           </p>
         </li>
     `;
 
 
     } else if (msg[i].type === "private_message" && (msg[i].to === nomeUsuario || msg[i].from ===nomeUsuario)){
         ListaMensagens.innerHTML += `
-        <li class"private_message">           
+        <li class"private_message">  
+        <p>         
         <span class="time">      
         (${msg[i].time})
         </span>
         
-        ${msg[i].from} reservadamente para 
-            ${msg[i].to}: 
+        <span class="from">
+        ${msg[i].from} </span> reservadamente para 
+            
+        <span class="to">
+        ${msg[i].to} </span>: 
+        <span class="texto">
             ${msg[i].text}
-        </li>
+        </span>
+        </p>
+            </li>
     `;
 
     }
@@ -162,7 +169,7 @@ function mensagensAtt() {
 
 function enviarMensagem (){
     let mensagem = document.querySelector("input")
-    let dentromsg= mensagem.value
+    dentromsg= mensagem.value
     
 
 
@@ -178,6 +185,7 @@ function enviarMensagem (){
     requerimento.then(Enviou);
     requerimento.catch(NaoEnviou);
 
+    
 }
 
 
@@ -190,6 +198,8 @@ function NaoEnviou (resposta){
 
 function Enviou (resposta){
      //console.log(resposta);
+    document.querySelector("input").value= "";
+
     
 
 }
