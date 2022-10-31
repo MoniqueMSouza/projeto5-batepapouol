@@ -1,10 +1,12 @@
 body{
 font-family: 'Roboto', sans-serif;
-
 }
+
 .corpo{
 height: 667px;
 width: 375px;
+position: relative;
+
 
 }
 
@@ -42,7 +44,7 @@ width: 375px;
     height:80px;
     width: 375px;
     background-color: #FFFFFF;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     display: flex;
     align-items: center;
@@ -50,7 +52,7 @@ width: 375px;
 
 input{
     margin-left: 17px;
-    height: 80px;
+    height: 75px;
     width: 300px;
     border: none;
     outline: none;
@@ -75,40 +77,74 @@ color: #000000;
 
 /*_____________________________________CONVERSAS_____________________________________*/
 
+
+
 .conversas{
-    height: 507px;
+    height: 590px;
     width: 375px;
-    background-color:#E5E5E5;
+    background-color: #E5E5E5;
     margin-top: 80px;
+    overflow-y: scroll;
+    
+
+
    
+
     
 }
 
 li{
     width: 375px;    
     margin-bottom: 4px;
-    height:40px ;
+    height:auto;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    
     
 }
 
-.status{
+.time{
+ color: #AAAAAA;
+margin-right: 8px;
+}
 
+.from{
+font-weight: bold;
+margin-right: 5px;
+}   
+
+.to{
+    margin-right: 2px;
+    margin-left: 5px;
+} 
+
+.texto{
+    margin-left: 5px;
+    overflow-wrap: break-word
+   
+    
+}
+
+/*_____________________________________ TIPOS CONVERSAS_____________________________________*/
+
+.status{
+    display: flex;
     background-color:#DCDCDC
  
 
 }
 
 .message{
-
-    background-color: 
-    #FFFFFF;
+    display: flex;
+    background-color:#FFFFFF;
 
 }
 
 .private_message{
-background-color: 
-#FFDEDE;
+display: flex;
+background-color: #FFDEDE;
 
-    
 }
 
+/*_____________________________________ XXXXXXXXXX_____________________________________*/

@@ -58,8 +58,11 @@ function Certo (resposta){
 }
 
 AdicionarNomeUsuario();
+
 BuscarMensagens();
+
 recarregarMensagens();
+
 
 
 function BuscarMensagens(){
@@ -74,7 +77,7 @@ function recarregarMensagens(){
 
 function renderizarMensagens(msg){
      //console.log(msg.length);
-
+const mensagens2 = msg.data
     const ListaMensagens = document.querySelector('.conversas');
     ListaMensagens.innerHTML = '';
      //console.log(msg);
@@ -89,28 +92,56 @@ function renderizarMensagens(msg){
 
      if (msg[i].type === "status") {
         ListaMensagens.innerHTML += `
-            <li class="status">                
-            (${msg[i].time})     
+        <li class="status">               
+        
+        <span class="time">  
+            (${msg[i].time}) 
+       
+        </span>
+            
+        <span class="from">     
             ${msg[i].from}  
-                ${msg[i].text}
-            </li>
+        </span>
+
+        <span class="texto"> 
+            ${msg[i].text}
+        </span>
+
+        </li>
         `;
     
     } else if (msg[i].type === "message") {
         ListaMensagens.innerHTML += `
-        <li class="message">                
-        (${msg[i].time})     
-        ${msg[i].from} para   
-            ${msg[i].to} : 
-            ${msg[i].text}
+        <li class="message">    
+        
+        <span class="time"> 
+        (${msg[i].time})  
+        </span>
+        
+        <span class="from">
+        ${msg[i].from} 
+        </span> para 
+
+        <span class="to">
+            ${msg[i].to}
+        </span>:
+        
+        <span class="texto">
+        ${msg[i].text}
+        </span>
+
+           
         </li>
     `;
 
 
-    } else if (msg[i].type === "private_message"){
+    } else if (msg[i].type === "private_message" && (msg[i].to === nomeUsuario || msg[i].from ===nomeUsuario)){
         ListaMensagens.innerHTML += `
-        <li class"private_message">                
-        (${msg[i].time})     
+        <li class"private_message">           
+        <span class="time">      
+        (${msg[i].time})
+        </span>
+        
         ${msg[i].from} reservadamente para 
             ${msg[i].to}: 
             ${msg[i].text}
@@ -119,21 +150,15 @@ function renderizarMensagens(msg){
 
     }
 
-
-
-
-
-
-
-
+}
+mensagensAtt();
 }
 
-
+function mensagensAtt() {
+    const ultimasMensagens = document.querySelector(".conversas").lastElementChild;
+    ultimasMensagens.scrollIntoView();
 }
-  
-    
-    
-
+   
 
 function enviarMensagem (){
     let mensagem = document.querySelector("input")
@@ -168,3 +193,4 @@ function Enviou (resposta){
     
 
 }
+
