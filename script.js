@@ -92,7 +92,7 @@ const mensagens2 = msg.data
 
      if (msg[i].type === "status") {
         ListaMensagens.innerHTML += `
-        <li class="status">               
+        <li class="status" data-test="message">               
         <p>
         <span class="time">  
             (${msg[i].time}) 
@@ -112,7 +112,7 @@ const mensagens2 = msg.data
     
     } else if (msg[i].type === "message") {
         ListaMensagens.innerHTML += `
-        <li class="message">    
+        <li class="message" data-test="message">    
         <p>
         <span class="time"> 
         (${msg[i].time})  
@@ -137,7 +137,7 @@ const mensagens2 = msg.data
 
     } else if (msg[i].type === "private_message" && (msg[i].to === nomeUsuario || msg[i].from ===nomeUsuario)){
         ListaMensagens.innerHTML += `
-        <li class"private_message">  
+        <li class"private_message" data-test="message">  
         <p>         
         <span class="time">      
         (${msg[i].time})
